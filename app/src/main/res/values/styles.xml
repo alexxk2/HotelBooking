@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BenefitTextCard">
+        <item name="android:background">@drawable/benefits_background</item>
+        <item name="android:fontFamily">@font/sf_pro_display_med_500</item>
+        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:paddingVertical">5dp</item>
+        <item name="android:textColor">@color/grey_text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="AdditionalButtonsArrowBack">
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:src">@drawable/ic_arrow_forward</item>
+    </style>
+
+    <style name="AdditionalTitleText">
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:fontFamily">@font/sf_pro_display_med_500</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AdditionalSubtitleText">
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:fontFamily">@font/sf_pro_display_med_500</item>
+        <item name="android:textColor">@color/grey_text_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:text">@string/only_necessary</item>
+    </style>
+
+    <style name="MainNavigationButton">
+
+        <item name="android:background">@drawable/button_background</item>
+        <item name="backgroundTint">@color/navigation_button_color</item>
+        <item name="android:fontFamily">@font/sf_pro_display_med_500</item>
+        <item name="android:textSize">16sp</item>
+
+    </style>
+</resources>

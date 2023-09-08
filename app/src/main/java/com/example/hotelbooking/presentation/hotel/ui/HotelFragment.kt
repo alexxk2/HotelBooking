@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.hotelbooking.databinding.FragmentHotelBinding
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.carousel.CarouselStrategy
+import com.google.android.material.carousel.MultiBrowseCarouselStrategy
 
 
 class HotelFragment : Fragment() {
@@ -31,7 +34,7 @@ class HotelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val x = CarouselLayoutManager().setCarouselStrategy(MultiBrowseCarouselStrategy())
     }
 
     override fun onDestroyView() {

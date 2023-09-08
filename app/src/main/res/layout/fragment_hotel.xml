@@ -1,14 +1,379 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/basic_background"
     tools:context=".presentation.hotel.ui.HotelFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/basic_info_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/basic_item_radius_bot_background"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/medium_margin"
+            android:paddingVertical="@dimen/medium_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/sf_pro_display_med_500"
+                android:text="@string/hotel"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <com.google.android.material.carousel.MaskableFrameLayout
+                android:id="@+id/carousel_item_container"
+                android:layout_width="match_parent"
+                android:layout_height="257dp"
+                android:layout_marginTop="16dp"
+                android:foreground="?attr/selectableItemBackground"
+                app:shapeAppearance="?attr/shapeAppearanceCornerMedium">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/image_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/image_item"
+
+                    />
+
+            </com.google.android.material.carousel.MaskableFrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rating_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rating_background"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="7dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:contentDescription="@string/rating_star"
+                    android:src="@drawable/ic_rating_star"
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_text"
+                    app:layout_constraintEnd_toStartOf="@id/rating_text"
+                    app:layout_constraintTop_toTopOf="@+id/rating_text" />
+
+                <TextView
+                    android:id="@+id/rating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_med_500"
+                    android:text="@string/rating_message"
+                    android:textColor="@color/rating_text_color"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="5 Превосходно" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/hotel_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_display_med_500"
+                android:lines="1"
+                android:textSize="22sp"
+                tools:text="Steigenberger Makadi" />
+
+            <TextView
+                android:id="@+id/hotel_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_display_med_500"
+                android:lines="1"
+                android:textColor="@color/blue_link_color"
+                android:textSize="14sp"
+                tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/tour_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_semibold_600"
+                    android:text="@string/tour_price"
+                    android:textSize="30sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="от 134 673 ₽" />
+
+                <TextView
+                    android:id="@+id/tour_price_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_display_semibold_600"
+                    android:lines="1"
+                    android:text="@string/tour_price_description"
+                    android:textColor="@color/grey_text_color"
+                    android:textSize="16sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tour_price"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tour_price"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/details_info_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@drawable/basic_item_background"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/medium_margin"
+            android:paddingVertical="@dimen/medium_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/basic_info_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_med_500"
+                android:text="@string/about_hotel"
+                android:textSize="22sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/benefits_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin">
+
+                <TextView
+                    android:id="@+id/benefit_1"
+                    style="@style/BenefitTextCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="3-я линия" />
+
+                <TextView
+                    android:id="@+id/benefit_2"
+                    style="@style/BenefitTextCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_margin"
+                    app:layout_constraintStart_toEndOf="@id/benefit_1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Платный Wi-Fi в фойе" />
+
+                <TextView
+                    android:id="@+id/benefit_3"
+                    style="@style/BenefitTextCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/benefit_1"
+                    tools:text="30 км до аэропорта" />
+
+                <TextView
+                    android:id="@+id/benefit_4"
+                    style="@style/BenefitTextCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_margin"
+                    app:layout_constraintBottom_toBottomOf="@+id/benefit_3"
+                    app:layout_constraintStart_toEndOf="@+id/benefit_3"
+                    app:layout_constraintTop_toTopOf="@+id/benefit_3"
+                    tools:text="1 км до пляжа" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/long_hotel_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/sf_pro_display_reg_400"
+                android:textColor="@color/black_90"
+                android:textSize="16sp"
+                tools:text="@string/long_hotel_description" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/additional_buttons_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:background="@drawable/benefits_background">
+
+                <ImageView
+                    android:id="@+id/conveniences_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="22dp"
+                    android:contentDescription="@string/enjoy_image"
+                    android:src="@drawable/ic_emoji_happy"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/what_included_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="34dp"
+                    android:contentDescription="@string/tick_image"
+                    android:src="@drawable/ic_tick_square"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/conveniences_image" />
+
+                <ImageView
+                    android:id="@+id/what_is_not_included_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="34dp"
+                    android:layout_marginBottom="22dp"
+                    android:contentDescription="@string/close_image"
+                    android:src="@drawable/ic_close_square"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/what_included_image" />
+
+                <ImageView
+                    style="@style/AdditionalButtonsArrowBack"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:contentDescription="@string/arrow_back"
+                    app:layout_constraintBottom_toBottomOf="@id/conveniences_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/conveniences_image" />
+
+                <ImageView
+                    style="@style/AdditionalButtonsArrowBack"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:contentDescription="@string/arrow_back"
+                    app:layout_constraintBottom_toBottomOf="@id/what_included_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/what_included_image" />
+
+                <ImageView
+                    style="@style/AdditionalButtonsArrowBack"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:contentDescription="@string/arrow_back"
+                    app:layout_constraintBottom_toBottomOf="@id/what_is_not_included_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/what_is_not_included_image" />
+
+
+                <TextView
+                    style="@style/AdditionalTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/conveniences"
+                    app:layout_constraintStart_toEndOf="@id/conveniences_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/AdditionalSubtitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="36dp"
+                    app:layout_constraintStart_toEndOf="@id/conveniences_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/AdditionalTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="73dp"
+                    android:text="@string/what_included"
+                    app:layout_constraintStart_toEndOf="@id/what_included_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/AdditionalSubtitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="94dp"
+                    app:layout_constraintStart_toEndOf="@id/what_included_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/AdditionalTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="131dp"
+                    android:text="@string/what_is_not_included"
+                    app:layout_constraintStart_toEndOf="@id/what_is_not_included_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/AdditionalSubtitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="152dp"
+                    app:layout_constraintStart_toEndOf="@id/what_is_not_included_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bottom_card_view"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_info_layout">
+
+            <Button
+                style="@style/MainNavigationButton"
+                android:id="@+id/button_to_rooms"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:layout_marginTop="12dp"
+                android:text="@string/to_room_selection" />
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
