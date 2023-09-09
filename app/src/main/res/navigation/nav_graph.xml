@@ -9,7 +9,11 @@
         android:id="@+id/hotelFragment"
         android:name="com.example.hotelbooking.presentation.hotel.ui.HotelFragment"
         android:label="fragment_hotel"
-        tools:layout="@layout/fragment_hotel" />
+        tools:layout="@layout/fragment_hotel" >
+        <action
+            android:id="@+id/action_hotelFragment_to_roomsFragment2"
+            app:destination="@id/roomsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bookingFragment"
         android:name="com.example.hotelbooking.presentation.booking.ui.BookingFragment"
@@ -24,5 +28,14 @@
         android:id="@+id/roomsFragment"
         android:name="com.example.hotelbooking.presentation.rooms.ui.RoomsFragment"
         android:label="fragment_rooms"
-        tools:layout="@layout/fragment_rooms" />
+        tools:layout="@layout/fragment_rooms" >
+        <argument
+            android:name="hotelName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_roomsFragment_to_hotelFragment"
+            app:destination="@id/hotelFragment"
+            app:popUpTo="@id/hotelFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

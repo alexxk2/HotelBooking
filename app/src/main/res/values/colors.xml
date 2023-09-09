@@ -11,6 +11,6 @@
     <color name="background_light_grey">#FBFBFC</color>
     <color name="black_90">#E6000000</color>
     <color name="dark_blue">#2C3035</color>
-
+    <color name="blue_link_color_background">#1A0D72FF</color>
 
 </resources>

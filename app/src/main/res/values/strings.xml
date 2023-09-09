@@ -22,5 +22,10 @@
     <string name="error">error</string>
     <string name="something_went_wrong">Что-то пошло не так</string>
     <string name="hotel_image">hotel image</string>
+    <string name="room_details">Подробнее о номере</string>
 
+
+   <!-- Rooms screen-->
+    <string name="room_price">%1$d ₽</string>
+    <string name="choose_room">Выбрать номер</string>
 </resources>

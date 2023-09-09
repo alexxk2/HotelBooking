@@ -47,10 +47,10 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/rating_layout"
+                android:id="@+id/about_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_margin"
                 android:background="@drawable/rating_background"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -86,9 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:ellipsize="end"
                 android:fontFamily="@font/sf_pro_display_med_500"
-                android:lines="1"
                 android:textSize="22sp"
                 tools:text="Steigenberger Makadi" />
 
@@ -387,7 +385,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="164dp"
             android:indeterminateTint="@color/blue_link_color"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -3,6 +3,7 @@ package com.example.hotelbooking.data.network.impl
 import com.example.hotelbooking.data.HotelDto
 import com.example.hotelbooking.data.network.HotelsApiService
 import com.example.hotelbooking.data.network.NetworkClient
+import com.example.hotelbooking.data.network.dto.RoomDto
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -27,5 +28,13 @@ class NetworkClientImpl : NetworkClient {
             listOf(response.body()!!)
         } else emptyList()
 
+    }
+
+    override suspend fun getRoomsInfo(): List<RoomDto> {
+        val response = retrofitService.getRoomsInfo()
+
+        return if (response.code() == 200) {
+            response.body()?.rooms ?: emptyList()
+        } else emptyList()
     }
 }

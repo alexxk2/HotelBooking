@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.hotelbooking.R
 import com.example.hotelbooking.databinding.FragmentHotelBinding
 import com.example.hotelbooking.domain.models.Hotel
@@ -48,6 +49,11 @@ class HotelFragment : Fragment() {
         viewModel.hotel.observe(viewLifecycleOwner) { hotel ->
             bindViews(hotel)
             hotelAdapter.submitList(hotel.imageUrls)
+
+            binding.buttonToRooms.setOnClickListener {
+                val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment2(hotel.name)
+                findNavController().navigate(action)
+            }
         }
 
         viewModel.screenState.observe(viewLifecycleOwner) { screenState ->
@@ -107,7 +113,7 @@ class HotelFragment : Fragment() {
         }
     }
 
-    private fun setRecyclerView(){
+    private fun setRecyclerView() {
         hotelAdapter = HotelAdapter()
         binding.imageRecyclerView.adapter = hotelAdapter
         binding.imageRecyclerView.layoutManager = CarouselLayoutManager()
