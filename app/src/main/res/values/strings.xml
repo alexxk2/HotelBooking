@@ -19,5 +19,8 @@
     <string name="what_included">Что включено</string>
     <string name="what_is_not_included">Что не включено</string>
     <string name="to_room_selection">К выбору номера</string>
+    <string name="error">error</string>
+    <string name="something_went_wrong">Что-то пошло не так</string>
+    <string name="hotel_image">hotel image</string>
 
 </resources>
