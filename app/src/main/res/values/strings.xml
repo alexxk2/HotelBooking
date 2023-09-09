@@ -6,7 +6,7 @@
     <string name="hotel">Отель</string>
     <string name="rating_star">rating star</string>
     <string name="rating_message">%1$d %2$s</string>
-    <string name="tour_price">от %1$d ₽</string>
+    <string name="tour_price">от %1$s ₽</string>
     <string name="tour_price_description">за тур с перелётом</string>
     <string name="about_hotel">Об отеле</string>
     <string name="long_hotel_description">Отель VIP-класса с собственными гольф полями. Высокий уровнь сервиса. Рекомендуем для респектабельного отдыха. Отель принимает гостей от 18 лет!</string>
@@ -26,6 +26,29 @@
 
 
    <!-- Rooms screen-->
-    <string name="room_price">%1$d ₽</string>
+    <string name="room_price">%1$s ₽</string>
     <string name="choose_room">Выбрать номер</string>
+    <string name="departure_place">Вылет из</string>
+
+
+    <!--Booking screen-->
+    <string name="country_city">Страна, город</string>
+    <string name="dates">Даты</string>
+    <string name="number_of_nights">Кол-во ночей</string>
+    <string name="room">Номер</string>
+    <string name="nutrition">Питание</string>
+    <string name="customer_info">Информация о покупателе</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="mail">Почта</string>
+    <string name="security_info">Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту</string>
+    <string name="hide_show_button">hide show button</string>
+    <string name="name">Имя</string>
+    <string name="add_tourist">Добавить туриста</string>
+    <string name="tour">Тур</string>
+    <string name="fuel_cost">Топливный сбор</string>
+    <string name="service_cost">Сервисный сбор</string>
+    <string name="total_cost">К оплате</string>
+    <string name="pay_button_text">Оплатить %1$s ₽</string>
+
+
 </resources>

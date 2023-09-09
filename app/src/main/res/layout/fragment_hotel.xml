@@ -9,7 +9,7 @@
     tools:context=".presentation.hotel.ui.HotelFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/hotel_contetnt_layout"
+        android:id="@+id/hotel_content_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -92,14 +92,9 @@
 
             <TextView
                 android:id="@+id/hotel_address"
+                style="@style/AddressTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin"
-                android:ellipsize="end"
-                android:fontFamily="@font/sf_pro_display_med_500"
-                android:lines="1"
-                android:textColor="@color/blue_link_color"
-                android:textSize="14sp"
                 tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

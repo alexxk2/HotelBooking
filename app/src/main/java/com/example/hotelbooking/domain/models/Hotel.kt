@@ -3,7 +3,7 @@ package com.example.hotelbooking.domain.models
 data class Hotel(
     val name: String,
     val address: String,
-    val price: Int,
+    val price: String,
     val priceDescription: String,
     val rating: Int,
     val ratingName: String,

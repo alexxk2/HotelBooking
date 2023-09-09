@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/small_margin"
+    android:background="@drawable/basic_item_background"
+    android:paddingHorizontal="@dimen/medium_margin"
+    android:paddingVertical="@dimen/medium_margin">
+
+    <TextView
+        android:id="@+id/tourist_info_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_display_med_500"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Первый турист" />
+
+    <ImageButton
+        android:id="@+id/hide_show_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/hide_show_button"
+        android:src="@drawable/hide_button"
+        app:layout_constraintBottom_toBottomOf="@+id/tourist_info_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tourist_info_title" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/first_name_input_layout"
+        style="@style/CustomEditTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tourist_info_title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/first_name_input_edit_text"
+            style="@style/CustomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/edit_text_background"
+            android:ems="16"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/last_name_input_layout"
+        style="@style/CustomEditTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/first_name_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/last_name_input_edit_text"
+            style="@style/CustomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/edit_text_background"
+            android:ems="16"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/birthday_input_layout"
+        style="@style/CustomEditTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/last_name_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/birthday_input_edit_text"
+            style="@style/CustomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/edit_text_background"
+            android:ems="16"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/citizenship_input_layout"
+        style="@style/CustomEditTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/birthday_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/citizenship_input_edit_text"
+            style="@style/CustomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/edit_text_background"
+            android:ems="16"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passport_input_layout"
+        style="@style/CustomEditTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/citizenship_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passport_input_edit_text"
+            style="@style/CustomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/edit_text_background"
+            android:ems="16"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passport_expiring_input_layout"
+        style="@style/CustomEditTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passport_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passport_expiring_input_edit_text"
+            style="@style/CustomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/edit_text_background"
+            android:ems="16"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

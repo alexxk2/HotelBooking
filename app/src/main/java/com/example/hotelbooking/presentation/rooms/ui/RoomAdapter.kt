@@ -12,6 +12,8 @@ import com.example.hotelbooking.databinding.RoomItemBinding
 import com.example.hotelbooking.domain.models.Room
 import com.example.hotelbooking.presentation.hotel.ui.HotelAdapter
 import com.google.android.material.carousel.CarouselLayoutManager
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 
 
 class RoomAdapter(

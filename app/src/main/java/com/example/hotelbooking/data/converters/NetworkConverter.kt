@@ -4,6 +4,8 @@ import com.example.hotelbooking.data.HotelDto
 import com.example.hotelbooking.data.network.dto.RoomDto
 import com.example.hotelbooking.domain.models.Hotel
 import com.example.hotelbooking.domain.models.Room
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 
 class NetworkConverter {
 
@@ -12,7 +14,7 @@ class NetworkConverter {
             return Hotel(
                 name = name,
                 address = address,
-                price = price,
+                price = addSpacesToBigNumber(price),
                 priceDescription = priceDescription,
                 rating = rating,
                 ratingName = ratingName,
@@ -27,11 +29,22 @@ class NetworkConverter {
         with(roomDto) {
             return Room(
                 name = name,
-                price = price,
+                price = addSpacesToBigNumber(price),
                 priceDescription = priceDescription,
                 peculiarities = peculiarities,
                 imageUrls = imageUrls
             )
         }
+    }
+
+    private fun addSpacesToBigNumber(number: Int): String {
+        val decimalFormat = DecimalFormat()
+        decimalFormat.isGroupingUsed = true
+        decimalFormat.groupingSize = 3
+        val decimalFormatSymbols = DecimalFormatSymbols()
+        decimalFormatSymbols.groupingSeparator = ' '
+        decimalFormat.decimalFormatSymbols = decimalFormatSymbols
+
+        return decimalFormat.format(number)
     }
 }

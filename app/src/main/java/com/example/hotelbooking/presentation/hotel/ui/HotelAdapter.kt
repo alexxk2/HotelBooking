@@ -30,7 +30,7 @@ class HotelAdapter : ListAdapter<String, HotelAdapter.HotelViewHolder>(DiffCallB
         Glide.with(holder.binding.root)
             .load(item)
             .centerCrop()
-            .placeholder(R.drawable.ic_image_placeholder)
+            .placeholder(R.drawable.ic_image_placeholder2)
             .into(holder.binding.imageView)
 
     }

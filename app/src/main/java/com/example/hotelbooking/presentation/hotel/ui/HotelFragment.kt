@@ -15,6 +15,8 @@ import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselStrategy
 import com.google.android.material.carousel.MultiBrowseCarouselStrategy
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 
 
 class HotelFragment : Fragment() {
