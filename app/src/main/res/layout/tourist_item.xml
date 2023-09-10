@@ -14,18 +14,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_display_med_500"
+        android:text="@string/tourist_info_title"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Первый турист" />
 
     <ImageButton
-        android:id="@+id/hide_show_button"
+        android:id="@+id/hide_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/hide_show_button"
         android:src="@drawable/hide_button"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tourist_info_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tourist_info_title" />
+
+    <ImageButton
+        android:id="@+id/show_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/hide_show_button"
+        android:src="@drawable/show_button"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tourist_info_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tourist_info_title" />
@@ -56,7 +70,7 @@
         style="@style/CustomEditTextLayout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:hint="@string/name"
+        android:hint="@string/last_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/first_name_input_layout">
@@ -76,7 +90,7 @@
         style="@style/CustomEditTextLayout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:hint="@string/name"
+        android:hint="@string/day_of_birth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/last_name_input_layout">
@@ -96,7 +110,7 @@
         style="@style/CustomEditTextLayout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:hint="@string/name"
+        android:hint="@string/citizenship"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/birthday_input_layout">
@@ -116,7 +130,7 @@
         style="@style/CustomEditTextLayout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:hint="@string/name"
+        android:hint="@string/foreign_passport_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/citizenship_input_layout">
@@ -136,7 +150,7 @@
         style="@style/CustomEditTextLayout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:hint="@string/name"
+        android:hint="@string/foreign_passport_expiring_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passport_input_layout">

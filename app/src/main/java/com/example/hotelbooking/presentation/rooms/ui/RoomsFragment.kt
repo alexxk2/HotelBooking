@@ -95,7 +95,8 @@ class RoomsFragment : Fragment() {
             context = requireContext(),
             hotelAdapter = hotelAdapter,
             onButtonClickListener = { room ->
-                //navigation action
+                val action = RoomsFragmentDirections.actionRoomsFragmentToBookingFragment()
+                findNavController().navigate(action)
             })
         binding.roomsRecyclerView.adapter = roomAdapter
         binding.roomsRecyclerView.setHasFixedSize(true)

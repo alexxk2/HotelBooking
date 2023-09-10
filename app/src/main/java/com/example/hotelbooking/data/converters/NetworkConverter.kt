@@ -1,7 +1,9 @@
 package com.example.hotelbooking.data.converters
 
 import com.example.hotelbooking.data.HotelDto
+import com.example.hotelbooking.data.network.dto.BookingInfoDto
 import com.example.hotelbooking.data.network.dto.RoomDto
+import com.example.hotelbooking.domain.models.BookingInfo
 import com.example.hotelbooking.domain.models.Hotel
 import com.example.hotelbooking.domain.models.Room
 import java.text.DecimalFormat
@@ -33,6 +35,28 @@ class NetworkConverter {
                 priceDescription = priceDescription,
                 peculiarities = peculiarities,
                 imageUrls = imageUrls
+            )
+        }
+    }
+
+    fun convertBookingInfoToDomain(bookingInfoDto: BookingInfoDto): BookingInfo {
+        with(bookingInfoDto) {
+            return BookingInfo(
+                hotelName = hotelName,
+                hotelAddress = hotelAddress,
+                rating = rating,
+                ratingName = ratingName,
+                departure = departure,
+                arrivalCountry = arrivalCountry,
+                tourDateStart = tourDateStart,
+                tourDateEnd = tourDateEnd,
+                numberOfNights = numberOfNights,
+                roomType = roomType,
+                nutrition = nutrition,
+                tourPrice = addSpacesToBigNumber(tourPrice),
+                fuelCharge = addSpacesToBigNumber(fuelCharge),
+                serviceCharge = addSpacesToBigNumber(serviceCharge),
+                totalPrice = addSpacesToBigNumber(tourPrice + fuelCharge + serviceCharge)
             )
         }
     }

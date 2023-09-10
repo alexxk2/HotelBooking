@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/basic_background"
     tools:context=".presentation.booking.ui.BookingFragment">
 
@@ -30,10 +30,11 @@
                 android:layout_height="?attr/actionBarSize"
                 android:paddingStart="18dp"
                 android:paddingEnd="18dp"
-                android:title="@string/hotel"
                 app:layout_scrollEffect="compress"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:navigationIcon="@drawable/ic_arrow_back"
+                app:title="@string/booking"
+                app:titleCentered="true"
                 app:titleTextAppearance="@style/TopBarTitle"
                 app:titleTextColor="@color/black" />
 
@@ -215,6 +216,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="156dp"
                 android:layout_marginTop="@dimen/medium_margin"
+                android:text="@string/tour_dates"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_city_data"
@@ -227,6 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="156dp"
                 android:layout_marginTop="@dimen/medium_margin"
+                android:text="@string/number_of_nights_data"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dates_data"
@@ -340,9 +343,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tourists_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -354,12 +358,13 @@
             android:id="@+id/add_tourist_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small_margin"
             android:background="@drawable/basic_item_background"
             android:paddingHorizontal="@dimen/medium_margin"
             android:paddingVertical="@dimen/medium_margin"
+            app:layout_constraintTop_toBottomOf="@id/tourists_recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tourists_recycler_view">
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/textView"
@@ -384,117 +389,118 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/costs_layout"
-        android:layout_width="0dp"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_height="wrap_content"
-        android:background="@drawable/basic_item_background"
-        android:paddingHorizontal="@dimen/medium_margin"
-        android:paddingVertical="@dimen/medium_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_tourist_layout">
-
-        <TextView
-            android:id="@+id/tour_price_name"
-            style="@style/BookingTextDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tour"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/fuel_price_name"
-            style="@style/BookingTextDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:text="@string/fuel_cost"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tour_price_name" />
-
-        <TextView
-            android:id="@+id/service_price_name"
-            style="@style/BookingTextDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:text="@string/service_cost"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fuel_price_name" />
-
-        <TextView
-            android:id="@+id/total_price_name"
-            style="@style/BookingTextDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:text="@string/total_cost"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/service_price_name" />
-
-
-        <TextView
-            android:id="@+id/tour_price_data"
-            style="@style/BookingTextData"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/costs_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:background="@drawable/basic_item_background"
+            android:paddingHorizontal="@dimen/medium_margin"
+            android:paddingVertical="@dimen/medium_margin"
+            app:layout_constraintTop_toBottomOf="@id/add_tourist_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="186 600 ₽" />
+            app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/fuel_price_data"
-            style="@style/BookingTextData"
-            android:layout_width="0dp"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tour_price_data"
-            tools:text="9 300 ₽" />
+            <TextView
+                android:id="@+id/tour_price_name"
+                style="@style/BookingTextDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tour"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/service_price_data"
-            style="@style/BookingTextData"
-            android:layout_width="0dp"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fuel_price_data"
-            tools:text="2 136 ₽" />
+            <TextView
+                android:id="@+id/fuel_price_name"
+                style="@style/BookingTextDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:text="@string/fuel_cost"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tour_price_name" />
 
-        <TextView
-            android:id="@+id/total_price_data"
-            style="@style/BookingTextData"
-            android:layout_width="0dp"
-            android:fontFamily="@font/sf_pro_display_semibold_600"
-            android:textColor="@color/blue_link_color"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/service_price_data"
-            tools:text="198 036 ₽" />
+            <TextView
+                android:id="@+id/service_price_name"
+                style="@style/BookingTextDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:text="@string/service_cost"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fuel_price_name" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/total_price_name"
+                style="@style/BookingTextDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:text="@string/total_cost"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/service_price_name" />
+
+
+            <TextView
+                android:id="@+id/tour_price_data"
+                style="@style/BookingTextData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="156dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="186 600 ₽" />
+
+            <TextView
+                android:id="@+id/fuel_price_data"
+                style="@style/BookingTextData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="156dp"
+                android:layout_marginTop="@dimen/medium_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tour_price_data"
+                tools:text="9 300 ₽" />
+
+            <TextView
+                android:id="@+id/service_price_data"
+                style="@style/BookingTextData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="156dp"
+                android:layout_marginTop="@dimen/medium_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fuel_price_data"
+                tools:text="2 136 ₽" />
+
+            <TextView
+                android:id="@+id/total_price_data"
+                style="@style/BookingTextData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="156dp"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:fontFamily="@font/sf_pro_display_semibold_600"
+                android:textColor="@color/blue_link_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/service_price_data"
+                tools:text="198 036 ₽" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/bottom_card_view"
             android:layout_width="0dp"
             android:layout_height="88dp"
             android:layout_marginTop="@dimen/small_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/costs_layout"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/costs_layout">
+            app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/button_to_rooms"
+                android:id="@+id/button_to_order"
                 style="@style/MainNavigationButton"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -502,6 +508,46 @@
                 android:layout_marginTop="12dp"
                 android:text="@string/pay_button_text" />
         </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/error_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="164dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/error"
+                android:src="@drawable/ic_error" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:paddingHorizontal="8dp"
+                android:text="@string/something_went_wrong"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="164dp"
+            android:indeterminateTint="@color/blue_link_color"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

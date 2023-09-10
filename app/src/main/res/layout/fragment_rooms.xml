@@ -24,6 +24,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:paddingStart="18dp"
                 android:paddingEnd="18dp"
+                app:titleCentered="true"
                 app:layout_scrollEffect="compress"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:navigationIcon="@drawable/ic_arrow_back"

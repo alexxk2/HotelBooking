@@ -49,6 +49,15 @@
     <string name="service_cost">Сервисный сбор</string>
     <string name="total_cost">К оплате</string>
     <string name="pay_button_text">Оплатить %1$s ₽</string>
-
+    <string name="last_name">Фамилия</string>
+    <string name="day_of_birth">Дата рождения</string>
+    <string name="citizenship">Гражданство</string>
+    <string name="foreign_passport_number">Номер загранпаспорта</string>
+    <string name="foreign_passport_expiring_date">Срок действия загранпаспорта</string>
+    <string name="tourist_info_title">%1$s турист</string>
+    <string name="tour_dates">%1$s - %2$s</string>
+    <string name="booking">Бронирование</string>
+    <string name="number_of_nights_data">%1$d ночей</string>
+    <string name="simple_price">%1$s ₽</string>
 
 </resources>
