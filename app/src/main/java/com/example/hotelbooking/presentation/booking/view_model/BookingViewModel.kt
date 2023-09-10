@@ -1,5 +1,6 @@
 package com.example.hotelbooking.presentation.booking.view_model
 
+import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,6 +23,9 @@ class BookingViewModel(
     private val _screenState = MutableLiveData<ScreenState>()
     val screenState: LiveData<ScreenState> = _screenState
 
+    private val _errorState = MutableLiveData<ErrorState>()
+    val errorState: LiveData<ErrorState> = _errorState
+
 
     fun getBookingInfo() {
         _screenState.value = ScreenState.Loading
@@ -42,4 +46,27 @@ class BookingViewModel(
             }
         }
     }
+
+    fun isInputValid(stringPhone: Editable?, stringEmail: Editable?) {
+        if (stringPhone.isNullOrBlank() && stringEmail.isNullOrBlank()) {
+            _errorState.value = ErrorState.BothEmpty
+        } else if (stringPhone.isNullOrBlank()) {
+            _errorState.value = ErrorState.EmptyPhone
+        } else if (stringEmail.isNullOrBlank()) {
+            _errorState.value = ErrorState.EmptyEmail
+        } else if (!isEmailValid(stringEmail.toString())) {
+            _errorState.value = ErrorState.InvalidEmail
+        } else if (!isPhoneValid(stringPhone.toString())) {
+            _errorState.value = ErrorState.InvalidPhone
+        } else _errorState.value = ErrorState.NotError
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun isPhoneValid(phone: String): Boolean {
+        return phone.length == 18
+    }
+
 }

@@ -1,9 +1,13 @@
 package com.example.hotelbooking.presentation.booking.ui
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -12,8 +16,16 @@ import com.example.hotelbooking.databinding.FragmentBookingBinding
 import com.example.hotelbooking.domain.models.BookingInfo
 import com.example.hotelbooking.domain.models.TouristInfo
 import com.example.hotelbooking.presentation.booking.view_model.BookingViewModel
+import com.example.hotelbooking.presentation.booking.view_model.ErrorState
 import com.example.hotelbooking.presentation.hotel.view_model.ScreenState
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.tinkoff.decoro.Mask
+import ru.tinkoff.decoro.MaskImpl
+import ru.tinkoff.decoro.slots.PredefinedSlots
+import ru.tinkoff.decoro.watchers.FormatWatcher
+import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 
 
 class BookingFragment : Fragment() {
@@ -61,16 +73,35 @@ class BookingFragment : Fragment() {
             manageScreenContent(screenState)
         }
 
+        viewModel.errorState.observe(viewLifecycleOwner) { errorState ->
+            manageErrorState(errorState)
+        }
+
         binding.addTouristButton.setOnClickListener {
 
             touristAdapter.submitList(addAdditionalTouristInfoBlock())
             touristAdapter.notifyItemInserted(listOfTouristBlocks.size)
-            binding.touristsRecyclerView.smoothScrollToPosition(listOfTouristBlocks.size-1)
+            binding.touristsRecyclerView.smoothScrollToPosition(listOfTouristBlocks.size - 1)
         }
+
+        binding.buttonToOrder.setOnClickListener {
+
+            viewModel.isInputValid(
+                stringPhone = binding.phoneInputEditText.text,
+                stringEmail = binding.emailInputEditText.text
+            )
+
+        }
+
+        addEmptyFieldListener(binding.emailInputEditText)
+        addEmptyFieldListener(binding.phoneInputEditText)
+
     }
 
 
     private fun bindViews(bookingInfo: BookingInfo) {
+
+        setPhoneMaskOnEditText()
 
         with(binding) {
             ratingText.text =
@@ -153,10 +184,10 @@ class BookingFragment : Fragment() {
     private fun setRecyclerView() {
         touristAdapter = TouristAdapter(requireContext(), onShowClickListener = { touristInfo ->
             touristAdapter.submitList(showInfoBlock(touristInfo.id))
-            binding.touristsRecyclerView.smoothScrollToPosition(touristInfo.id-1)
+            binding.touristsRecyclerView.smoothScrollToPosition(touristInfo.id - 1)
         }, onHideClickListener = { touristInfo ->
             touristAdapter.submitList(hideInfoBlock(touristInfo.id))
-            binding.touristsRecyclerView.smoothScrollToPosition(touristInfo.id-1)
+            binding.touristsRecyclerView.smoothScrollToPosition(touristInfo.id - 1)
         })
         binding.touristsRecyclerView.adapter = touristAdapter
         binding.touristsRecyclerView.setHasFixedSize(false)
@@ -186,8 +217,8 @@ class BookingFragment : Fragment() {
 
     private fun showInfoBlock(id: Int): List<TouristInfo> {
         val tempList = mutableListOf<TouristInfo>()
-        val newItem = TouristInfo(id=id,isVisible = true)
-        listOfTouristBlocks[id-1] = newItem
+        val newItem = TouristInfo(id = id, isVisible = true)
+        listOfTouristBlocks[id - 1] = newItem
 
         tempList.addAll(listOfTouristBlocks)
         return tempList.toList()
@@ -195,12 +226,82 @@ class BookingFragment : Fragment() {
 
     private fun hideInfoBlock(id: Int): List<TouristInfo> {
         val tempList = mutableListOf<TouristInfo>()
-        val newItem = TouristInfo(id=id,isVisible = false)
-        listOfTouristBlocks[id-1] = newItem
+        val newItem = TouristInfo(id = id, isVisible = false)
+        listOfTouristBlocks[id - 1] = newItem
 
         tempList.addAll(listOfTouristBlocks)
         return tempList.toList()
     }
+
+    private fun setPhoneMaskOnEditText() {
+        val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
+        mask.isHideHardcodedHead = true
+        val formatWatcher = MaskFormatWatcher(mask)
+        formatWatcher.installOn(binding.phoneInputEditText)
+    }
+
+
+    private fun addEmptyFieldListener(view: TextInputEditText) {
+        view.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.isNullOrBlank()) {
+                    view.background =
+                        resources.getDrawable(R.drawable.edit_text_error_background)
+                } else {
+                    view.background =
+                        resources.getDrawable(R.drawable.edit_text_background)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun manageErrorState(errorState: ErrorState) {
+
+        when (errorState) {
+
+            ErrorState.EmptyEmail -> {
+                Snackbar.make(binding.emailInputEditText, "Empty mail", 3000).show()
+                drawErrorAndScrollToIt(binding.emailInputEditText)
+            }
+
+            ErrorState.InvalidEmail -> {
+                Snackbar.make(binding.emailInputEditText, "Invalid email", 3000).show()
+                drawErrorAndScrollToIt(binding.emailInputEditText)
+            }
+
+            ErrorState.InvalidPhone -> {
+                Snackbar.make(binding.emailInputEditText, "Invalid phone", 3000).show()
+                drawErrorAndScrollToIt(binding.phoneInputEditText)
+            }
+
+            ErrorState.NotError -> {
+                Snackbar.make(binding.emailInputEditText, "Everything is OK", 3000).show()
+                //добавить навигацию к заказу
+            }
+
+            ErrorState.EmptyPhone -> {
+                Snackbar.make(binding.emailInputEditText, "Empty phone", 3000).show()
+                drawErrorAndScrollToIt(binding.phoneInputEditText)
+            }
+
+            ErrorState.BothEmpty -> {
+                Snackbar.make(binding.emailInputEditText, "Both fields are empty", 3000).show()
+                drawErrorAndScrollToIt(binding.phoneInputEditText)
+                drawErrorAndScrollToIt(binding.emailInputEditText)
+            }
+        }
+    }
+
+    private fun drawErrorAndScrollToIt(view: TextInputEditText) {
+        view.background = resources.getDrawable(R.drawable.edit_text_error_background)
+        val coordinates = view.layoutParams
+        binding.bookingScrollView.smoothScrollTo(coordinates.width, coordinates.height)
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

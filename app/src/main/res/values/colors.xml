@@ -13,6 +13,7 @@
     <color name="dark_blue">#2C3035</color>
     <color name="blue_link_color_background">#1A0D72FF</color>
     <color name="edit_text_background_color">#F6F6F9</color>
+    <color name="edit_text_background_error_color">#26EB5757</color>
 
 
 </resources>

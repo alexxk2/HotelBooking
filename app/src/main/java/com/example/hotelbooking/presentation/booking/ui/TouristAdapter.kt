@@ -1,6 +1,8 @@
 package com.example.hotelbooking.presentation.booking.ui
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelbooking.R
 import com.example.hotelbooking.databinding.TouristItemBinding
 import com.example.hotelbooking.domain.models.TouristInfo
+import com.google.android.material.textfield.TextInputEditText
 
 class TouristAdapter(
     private val context: Context,
@@ -25,6 +28,13 @@ class TouristAdapter(
             onShowClickListener: (touristInfo: TouristInfo) -> Unit,
             onHideClickListener: (touristInfo: TouristInfo) -> Unit
         ) {
+            addEmptyFieldListener(binding.birthdayInputEditText)
+            addEmptyFieldListener(binding.citizenshipInputEditText)
+            addEmptyFieldListener(binding.firstNameInputEditText)
+            addEmptyFieldListener(binding.lastNameInputEditText)
+            addEmptyFieldListener(binding.passportInputEditText)
+            addEmptyFieldListener(binding.passportExpiringInputEditText)
+
             binding.touristInfoTitle.text =
                 context.getString(R.string.tourist_info_title, drawTitle(item.id))
             manageContent(item.isVisible)
@@ -103,5 +113,22 @@ class TouristAdapter(
                 return oldItem == newItem
             }
         }
+    }
+
+    private fun addEmptyFieldListener(view: TextInputEditText) {
+        view.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.isNullOrBlank()) {
+                    view.background =
+                        context.resources.getDrawable(R.drawable.edit_text_error_background)
+                } else {
+                    view.background =
+                        context.resources.getDrawable(R.drawable.edit_text_background)
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 }
