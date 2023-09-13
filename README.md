@@ -43,6 +43,6 @@
 
 ## Gif flow приложения
 
-<img src="https://github.com/alexxk2/StarsWarsCitizen/blob/master/app/src/main/res/drawable/flow_1.gif" width="340" height="699" />  <br>
+<img src="https://github.com/alexxk2/HotelBooking/blob/dev/app/src/main/res/drawable/flow.gif" width="340" height="699" />  <br>
 
 
