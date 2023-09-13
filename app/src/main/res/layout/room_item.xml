@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/basic_item_background"
+    android:paddingHorizontal="@dimen/medium_margin"
+    android:paddingVertical="@dimen/medium_margin">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rooms_image_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="257dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="3"
+        tools:listitem="@layout/image_item" />
+
+    <TextView
+        android:id="@+id/hotel_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:fontFamily="@font/sf_pro_display_med_500"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@id/rooms_image_recycler_view"
+        app:layout_constraintTop_toBottomOf="@id/rooms_image_recycler_view"
+        tools:text="Steigenberger Makadi" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/benefits_chip_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        app:layout_constraintStart_toStartOf="@id/hotel_name"
+        app:layout_constraintTop_toBottomOf="@id/hotel_name">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/benefit_1"
+            style="@style/BenefitCustomChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="3-я линия" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/benefit_2"
+            style="@style/BenefitCustomChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Платный Wi-Fi в фойе" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/benefit_3"
+            style="@style/BenefitCustomChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="30 км до аэропорта" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/about_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:background="@drawable/about_room_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="7dp"
+        app:layout_constraintStart_toStartOf="@id/benefits_chip_group"
+        app:layout_constraintTop_toBottomOf="@id/benefits_chip_group">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/rating_star"
+            android:src="@drawable/ic_arrow_forward"
+            app:layout_constraintBottom_toBottomOf="@+id/about_text"
+            app:layout_constraintStart_toEndOf="@id/about_text"
+            app:layout_constraintTop_toTopOf="@+id/about_text"
+            app:tint="@color/blue_link_color" />
+
+        <TextView
+            android:id="@+id/about_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_med_500"
+            android:text="@string/room_details"
+            android:textColor="@color/blue_link_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tour_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:fontFamily="@font/sf_pro_display_semibold_600"
+        android:text="@string/room_price"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@id/about_layout"
+        app:layout_constraintTop_toBottomOf="@id/about_layout"
+        tools:text="134 673 ₽" />
+
+    <TextView
+        android:id="@+id/tour_price_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:ellipsize="end"
+        android:fontFamily="@font/sf_pro_display_semibold_600"
+        android:lines="1"
+        android:text="@string/tour_price_description"
+        android:textColor="@color/grey_text_color"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tour_price"
+        app:layout_constraintStart_toEndOf="@id/tour_price" />
+
+
+    <Button
+        android:id="@+id/button_to_rooms"
+        style="@style/MainNavigationButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:text="@string/choose_room"
+        app:layout_constraintTop_toBottomOf="@id/tour_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
