@@ -336,14 +336,13 @@ class BookingFragment : Fragment() {
             }
 
 
-
             ErrorState.EmptyPhone -> {
                 showErrorSnackBar("Empty phone")
                 drawErrorAndScrollToIt(binding.phoneInputEditText)
             }
 
             ErrorState.PhoneEmailAreEmpty -> {
-                showErrorSnackBar("Both fields are empty")
+                showErrorSnackBar("Phone and Email fields are empty")
                 drawErrorAndScrollToIt(binding.phoneInputEditText)
                 drawErrorAndScrollToIt(binding.emailInputEditText)
             }
