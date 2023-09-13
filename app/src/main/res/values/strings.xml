@@ -60,4 +60,11 @@
     <string name="number_of_nights_data">%1$d ночей</string>
     <string name="simple_price">%1$s ₽</string>
 
+    <!--Order screen-->
+    <string name="order_is_paid">Заказ оплачен</string>
+    <string name="congratulations_image">congratulations image</string>
+    <string name="order_details">Подтверждение заказа №%1$d может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
+    <string name="well_done">Супер!</string>
+    <string name="order_accepted">Ваш заказ принят в работу</string>
+
 </resources>

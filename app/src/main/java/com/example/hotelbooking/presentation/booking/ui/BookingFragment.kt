@@ -1,13 +1,11 @@
 package com.example.hotelbooking.presentation.booking.ui
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -21,10 +19,8 @@ import com.example.hotelbooking.presentation.hotel.view_model.ScreenState
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.tinkoff.decoro.Mask
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.slots.PredefinedSlots
-import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 
 
@@ -38,10 +34,6 @@ class BookingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-
     }
 
     override fun onCreateView(
@@ -127,7 +119,7 @@ class BookingFragment : Fragment() {
             totalPriceData.text = getString(R.string.simple_price, bookingInfo.totalPrice)
             buttonToOrder.text = getString(R.string.pay_button_text, bookingInfo.totalPrice)
 
-            touristAdapter.submitList(addFirstTouristInfoBlock())
+
         }
     }
 
@@ -188,9 +180,72 @@ class BookingFragment : Fragment() {
         }, onHideClickListener = { touristInfo ->
             touristAdapter.submitList(hideInfoBlock(touristInfo.id))
             binding.touristsRecyclerView.smoothScrollToPosition(touristInfo.id - 1)
-        })
+        },
+        birthdayTextWatcher = object :TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.checkIfBirthdayEmpty(s)
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        },
+            citizenshipTextWatcher = object :TextWatcher{
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    viewModel.checkIfCitizenshipEmpty(s)
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            },
+            firstNameTextWatcher = object :TextWatcher{
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    viewModel.checkIfFirstNameEmpty(s)
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            },
+            lastNameTextWatcher = object :TextWatcher{
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    viewModel.checkIfLastNameEmpty(s)
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            },
+            passportTextWatcher = object :TextWatcher{
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    viewModel.checkIfPassportEmpty(s)
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            },
+            passportExpiringTextWatcher = object :TextWatcher{
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    viewModel.checkIfPassportDateEmpty(s)
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            }
+        )
         binding.touristsRecyclerView.adapter = touristAdapter
         binding.touristsRecyclerView.setHasFixedSize(false)
+
+
+        if (listOfTouristBlocks.isNotEmpty()){
+            touristAdapter.submitList(listOfTouristBlocks)
+        }
+        else{
+            touristAdapter.submitList(addFirstTouristInfoBlock())
+        }
     }
 
     private fun navigateBack() {
@@ -263,37 +318,50 @@ class BookingFragment : Fragment() {
 
         when (errorState) {
 
+            ErrorState.Default -> {}
+
             ErrorState.EmptyEmail -> {
-                Snackbar.make(binding.emailInputEditText, "Empty mail", 3000).show()
+                showErrorSnackBar("Empty mail")
                 drawErrorAndScrollToIt(binding.emailInputEditText)
             }
 
             ErrorState.InvalidEmail -> {
-                Snackbar.make(binding.emailInputEditText, "Invalid email", 3000).show()
+                showErrorSnackBar("Invalid email")
                 drawErrorAndScrollToIt(binding.emailInputEditText)
             }
 
             ErrorState.InvalidPhone -> {
-                Snackbar.make(binding.emailInputEditText, "Invalid phone", 3000).show()
+                showErrorSnackBar("Invalid phone")
                 drawErrorAndScrollToIt(binding.phoneInputEditText)
             }
 
-            ErrorState.NotError -> {
-                Snackbar.make(binding.emailInputEditText, "Everything is OK", 3000).show()
-                //добавить навигацию к заказу
-            }
+
 
             ErrorState.EmptyPhone -> {
-                Snackbar.make(binding.emailInputEditText, "Empty phone", 3000).show()
+                showErrorSnackBar("Empty phone")
                 drawErrorAndScrollToIt(binding.phoneInputEditText)
             }
 
-            ErrorState.BothEmpty -> {
-                Snackbar.make(binding.emailInputEditText, "Both fields are empty", 3000).show()
+            ErrorState.PhoneEmailAreEmpty -> {
+                showErrorSnackBar("Both fields are empty")
                 drawErrorAndScrollToIt(binding.phoneInputEditText)
                 drawErrorAndScrollToIt(binding.emailInputEditText)
             }
+
+
+            ErrorState.TouristInfoEmpty -> {
+                showErrorSnackBar("Tourists fields are empty")
+            }
+
+            ErrorState.NotError -> {
+                val action = BookingFragmentDirections.actionBookingFragmentToOrderFragment()
+                findNavController().navigate(action)
+            }
         }
+    }
+
+    private fun showErrorSnackBar(text: String){
+        Snackbar.make(binding.emailInputEditText, text, 3000).show()
     }
 
     private fun drawErrorAndScrollToIt(view: TextInputEditText) {
@@ -302,9 +370,13 @@ class BookingFragment : Fragment() {
         binding.bookingScrollView.smoothScrollTo(coordinates.width, coordinates.height)
     }
 
+    private fun scrollToRecyclerView(){
+        val coordinates = binding.touristsRecyclerView.layoutParams
+        binding.bookingScrollView.smoothScrollTo(coordinates.width, coordinates.height)
+    }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

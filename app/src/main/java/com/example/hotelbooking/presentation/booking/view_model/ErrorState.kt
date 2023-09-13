@@ -6,5 +6,7 @@ sealed interface ErrorState{
     object EmptyEmail: ErrorState
     object InvalidEmail: ErrorState
     object InvalidPhone: ErrorState
-    object BothEmpty: ErrorState
+    object PhoneEmailAreEmpty: ErrorState
+    object Default: ErrorState
+    object TouristInfoEmpty: ErrorState
 }

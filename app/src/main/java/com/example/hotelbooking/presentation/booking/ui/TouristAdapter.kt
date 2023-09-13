@@ -18,6 +18,13 @@ class TouristAdapter(
     private val context: Context,
     private val onShowClickListener: (touristInfo: TouristInfo) -> Unit,
     private val onHideClickListener: (touristInfo: TouristInfo) -> Unit,
+    private val citizenshipTextWatcher: TextWatcher,
+    private val firstNameTextWatcher: TextWatcher,
+    private val lastNameTextWatcher: TextWatcher,
+    private val passportTextWatcher: TextWatcher,
+    private val passportExpiringTextWatcher: TextWatcher,
+    private val birthdayTextWatcher: TextWatcher,
+
 ) : ListAdapter<TouristInfo, TouristAdapter.TouristViewHolder>(DiffCallBack) {
 
 
@@ -26,7 +33,13 @@ class TouristAdapter(
         fun bind(
             item: TouristInfo,
             onShowClickListener: (touristInfo: TouristInfo) -> Unit,
-            onHideClickListener: (touristInfo: TouristInfo) -> Unit
+            onHideClickListener: (touristInfo: TouristInfo) -> Unit,
+            citizenshipTextWatcher: TextWatcher,
+            firstNameTextWatcher: TextWatcher,
+            lastNameTextWatcher: TextWatcher,
+            passportTextWatcher: TextWatcher,
+            passportExpiringTextWatcher: TextWatcher,
+            birthdayTextWatcher: TextWatcher,
         ) {
             addEmptyFieldListener(binding.birthdayInputEditText)
             addEmptyFieldListener(binding.citizenshipInputEditText)
@@ -34,6 +47,13 @@ class TouristAdapter(
             addEmptyFieldListener(binding.lastNameInputEditText)
             addEmptyFieldListener(binding.passportInputEditText)
             addEmptyFieldListener(binding.passportExpiringInputEditText)
+
+            binding.birthdayInputEditText.addTextChangedListener(birthdayTextWatcher)
+            binding.citizenshipInputEditText.addTextChangedListener(citizenshipTextWatcher)
+            binding.firstNameInputEditText.addTextChangedListener(firstNameTextWatcher)
+            binding.lastNameInputEditText.addTextChangedListener(lastNameTextWatcher)
+            binding.passportInputEditText.addTextChangedListener(passportTextWatcher)
+            binding.passportExpiringInputEditText.addTextChangedListener(passportExpiringTextWatcher)
 
             binding.touristInfoTitle.text =
                 context.getString(R.string.tourist_info_title, drawTitle(item.id))
@@ -98,7 +118,13 @@ class TouristAdapter(
         holder.bind(
             item = item,
             onHideClickListener = onHideClickListener,
-            onShowClickListener = onShowClickListener
+            onShowClickListener = onShowClickListener,
+            birthdayTextWatcher = birthdayTextWatcher,
+            citizenshipTextWatcher = citizenshipTextWatcher,
+            firstNameTextWatcher = firstNameTextWatcher,
+            lastNameTextWatcher = lastNameTextWatcher,
+            passportExpiringTextWatcher = passportExpiringTextWatcher,
+            passportTextWatcher = passportTextWatcher
         )
     }
 
